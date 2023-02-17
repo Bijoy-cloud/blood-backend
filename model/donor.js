@@ -3,16 +3,28 @@ const sql = require('../db')
 //function part is the constructor 
 const Donor = function(donor){
     this.name= donor.name,
-    this.age = donor.age,
+    this.lastname= donor.lastname,
     this.bloodGroup= donor.bloodGroup,
     this.phoneNumber = donor.phoneNumber,
     this.city = donor.city
+    this.previousDonation=donor.previousDonation
 }
 
 Donor.create = async(newDonor,result)=>{
-    sql.query("insert into donor set ?",newDonor, (err,res)=>{
+    console.log("new is",newDonor)
+    sql.query("insert into donor set ?",newDonor, (res,err)=>{
+
         if(err){
-            result(null,err);
+            console.log(err)
+            console.log(res)
+                if (err.code === 'ER_DUP_ENTRY' || err.code === 'ER_DUP_KEY') {
+                    
+                    result(null,{message:"Duplicate Entry"});
+                    // Handle MySQL unique constraint error
+                  }else{
+                    result({err})
+                  }     
+           
         }else{
            result(null,res) 
         }
