@@ -28,15 +28,17 @@ exports.register = async(req,res,next) =>{
                 hashPassword=hash;
                 const newUser = new user({
                     name:req.body.name,
-                    password:hashPassword
+                    password:hashPassword 
                 })
-                sql.query('INSERT INTO USER SET ?',newUser,(err,result)=>{
+                sql.query('INSERT INTO user SET ?',newUser,(err,result)=>{
                     if(err){
-                        // console.log("user Registered")
+                        console.log(err)
                         const errorMessage = err.errno==1062?`${req.body.name} already exist`:err.sqlMessage
                         return res.status(400).send(errorMessage);
                     }else{
+                        console.log("user Registered")
                         return res.status(200).send(newUser)
+
                     }
             });
         });

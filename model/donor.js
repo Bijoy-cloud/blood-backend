@@ -32,7 +32,7 @@ Donor.create = async(newDonor,result)=>{
 }
 
 Donor.findAll = (result) =>{
-    sql.query("SELECT * FROM DONOR",(err,res)=>{
+    sql.query("SELECT * FROM donor",(err,res)=>{
         if(err){
             result(null,err)
         }else{
@@ -40,8 +40,8 @@ Donor.findAll = (result) =>{
         }
     })
 }
-Donor.findByBloodGroup=(bllodGroup,result)=>{
-    sql.query("SELECT * FROM DONOR WHERE BLOODGROUP=?",bllodGroup,(err,res)=>{
+Donor.findByBloodGroup=(bloodGroup,result)=>{
+    sql.query("SELECT * FROM donor WHERE BLOODGROUP=?",bloodGroup,(err,res)=>{
         if(err){
             result(null,err);
         }else{
@@ -50,4 +50,4 @@ Donor.findByBloodGroup=(bllodGroup,result)=>{
     })
 }
 
-module.exports = Donor;
+module.exports = Donor; 

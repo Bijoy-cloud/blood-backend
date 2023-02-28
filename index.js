@@ -8,7 +8,7 @@ const connection = require('./db')
 const verifyToken = require("./utilis/verifyToken")
 const route = require('./router/routes')
 const PORT = process.env.PORT || 3000;
-
+const host = "0.0.0.0"
 require('dotenv').config({ path: './config/.env' })
 // var corsOptions = {
 //     origin: "http://localhost:3000"
@@ -34,9 +34,12 @@ connection.connect(function(err) {
 });
 
 //using database blooddrop
-connection.query('use blooddrop;',(err,res)=>{
-    console.log("using blooddrop database")
-})
+// connection.query('use freedb_ bloodDrop',(err,res)=>{
+//     console.log("using blooddrop database")
+//     if(err){
+//       console.log("err is",err)
+//     }
+// })
 // get the cookie incoming request
 // app.get('/getcookie',verifyToken, (req, res) => {
 //   //show the saved cookies
@@ -47,4 +50,4 @@ connection.query('use blooddrop;',(err,res)=>{
 
 
 
-const server  = app.listen(PORT,console.log(`Server is running on ${PORT}`))
+const server  = app.listen(PORT,host,console.log(`Server is running on ${PORT}`))
