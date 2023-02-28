@@ -16,7 +16,7 @@ require('dotenv').config({ path: './config/.env' })
 app.use(cookieParser())
 
 app.use(cors(
-  {credentials: true, origin: 'http://localhost:3001'}
+  // {credentials: true, origin: 'http://localhost:3001'}
 ));
 
   // create application/x-www-form-urlencoded parser
