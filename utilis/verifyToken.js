@@ -1,8 +1,9 @@
 const jwt = require('jsonwebtoken')
 
  const verifyToken =(req,res,next)=>{
-    const token = req.cookies.access_token;
-    console.log("token",token)
+    // const token = req.cookies.access_token;
+  
+    const token = req.headers.token
     if(!token){
         return res.status(401).send("No token found");   
    }
@@ -16,4 +17,4 @@ const jwt = require('jsonwebtoken')
    
    next()
 }
-module.exports = verifyToken;
+module.exports = verifyToken;   

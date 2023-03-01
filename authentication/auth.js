@@ -79,11 +79,11 @@ exports.login = async(req,res,next) =>{
                     const token = jwt.sign({id: result[0].id},process.env.JWT_SECRET)
                     // console.log("token is",token)
                     res.clearCookie('access_token')
-                    return res.cookie("access_token",token,{
-                        httpOnly:true,
-                        secure:true
-                    }).status(200).send("Login successful")
-                });
+                     // Return the token
+                    return res.status(200).json({
+                            token: token
+                        });
+                }); 
                
             }
         })
