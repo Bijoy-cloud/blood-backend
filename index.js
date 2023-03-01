@@ -10,22 +10,25 @@ const route = require('./router/routes')
 const PORT = process.env.PORT || 3000;
 const host = "0.0.0.0"
 require('dotenv').config({ path: './config/.env' })
-// var corsOptions = {
-//     origin: "http://localhost:3000"
-//   };
+
 app.use(cookieParser())
 
-app.use(cors(
-  // {credentials: true, origin: 'http://localhost:3001'}
-));
 
 
-app.use(function(req,res,next){
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", req.header('Origin'));
+  res.header("Access-Control-Allow-Credentials", true);
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
   next();
 });
-  // create application/x-www-form-urlencoded parser
+
   var urlencodedParser = bodyParser.urlencoded({ extended: false })
   app.use(express.json({
     type: ['application/json', 'text/plain']
@@ -38,21 +41,6 @@ connection.connect(function(err) {
   
     console.log('Connected to the Myconnection server.'); 
 });
-
-//using database blooddrop
-// connection.query('use freedb_ bloodDrop',(err,res)=>{
-//     console.log("using blooddrop database")
-//     if(err){
-//       console.log("err is",err)
-//     }
-// })
-// get the cookie incoming request
-// app.get('/getcookie',verifyToken, (req, res) => {
-//   //show the saved cookies
-//   console.log("verify")
-//   console.log(req.cookies)
-//   res.send(req.cookies);
-// });
 
 
 
