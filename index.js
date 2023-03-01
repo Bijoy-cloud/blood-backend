@@ -13,7 +13,7 @@ require('dotenv').config({ path: './config/.env' })
 
 app.use(cookieParser())
 
-
+app.use(cors());
 
 
 
