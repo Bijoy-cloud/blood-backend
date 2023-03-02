@@ -17,7 +17,7 @@ exports.create = (req, res) => {
   });
 
   donor.create(dono, (data,err) => {
-    console.log("err is",data)
+    // console.log("err is",data)
     if(data.message=="Duplicate Entry"){
       console.log("Hello")
       res.status(400).send({message:"this number already exist"})

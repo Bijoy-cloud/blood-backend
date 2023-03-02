@@ -32,8 +32,8 @@ exports.register = async(req,res,next) =>{
                 })
                 sql.query('INSERT INTO user SET ?',newUser,(err,result)=>{
                     if(err){
-                        console.log(err)
                         const errorMessage = err.errno==1062?`${req.body.name} already exist`:err.sqlMessage
+                        // console.log(errorMessage)
                         return res.status(400).send(errorMessage);
                     }else{
                         console.log("user Registered")
@@ -41,7 +41,7 @@ exports.register = async(req,res,next) =>{
 
                     }
             });
-        });
+        }); 
         })
         
     }
