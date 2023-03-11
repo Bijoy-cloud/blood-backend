@@ -39,7 +39,6 @@ connection.connect(function(err) {
     if (err) {
       return console.error('error: ' + err.message);
     }
-    connection.query("use railway")
     console.log('Connected to the Myconnection server.'); 
 });
 
