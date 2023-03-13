@@ -12,7 +12,7 @@ const Donor = function(donor){
 
 Donor.create = async(newDonor,result)=>{
     console.log("new is",newDonor)
-    sql.query("insert into donor set ?",newDonor, (res,err)=>{
+    sql.query("insert into donor set ?",newDonor, (err,res)=>{
 
         if(err){
             console.log(err)
