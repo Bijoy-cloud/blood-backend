@@ -13,10 +13,10 @@ const Donor = function(donor){
 Donor.create = async(newDonor,result)=>{
     console.log("new is",newDonor)
     sql.query("insert into donor set ?",newDonor, (err,res)=>{
-
+        // console.log("p",err)
         if(err){
-            console.log(err)
-            console.log(res)
+            // console.log(err)
+            // console.log(res)
                 if (err.code === 'ER_DUP_ENTRY' || err.code === 'ER_DUP_KEY') {
                     
                     result(null,{message:"Duplicate Entry"});
@@ -24,7 +24,7 @@ Donor.create = async(newDonor,result)=>{
                   }else{
                     result({err})
                   }     
-           
+            
         }else{
            result(null,res) 
         }

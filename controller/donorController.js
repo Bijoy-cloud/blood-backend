@@ -1,4 +1,4 @@
-const donor = require("../model/donor");
+// const donor = require("../model/donor");
 const sql = require("../db");
 exports.create = (req, res) => {
   if (!req.body) {
@@ -6,29 +6,38 @@ exports.create = (req, res) => {
       message: "Content can not be Empty",
     });
   }
-  console.log("req",req.body)
-  const dono = new donor({
+  // console.log("req",req.body)
+  const donor = {
     name: req.body.name,
     lastname: req.body.lastname,
     bloodGroup: req.body.bloodGroup,
     phoneNumber: req.body.phoneNumber,
     city: req.body.city,
     previousDonation: req.body.previousBloodDonation,
-  });
+  };
+  sql.query("insert into donor set ?",donor,(err,data)=>{
+    if(err){
+          if (err.code === 'ER_DUP_ENTRY' || err.code === 'ER_DUP_KEY') {
+              
+              return res.status(400).send({message:"Duplicate Entry"});
+              // Handle MySQL unique constraint error
+            }else{
+              return res.status(400).send({message:"Something bad happend on client side"})
+            }     
+      
+  }else{
+     return res.status(200).send("Succed") 
+  }
+  })
+  // donor.create(dono, (err,data) => {
+  //   console.log("data is",data)
+  //   console.log(" is",err)
 
-  donor.create(dono, (data,err) => {
-    // console.log("err is",data)
-    if(data.message=="Duplicate Entry"){
-      console.log("Hello")
-      res.status(400).send({message:"this number already exist"})
-    }
-    
-    if (err) {
-      res.status(500).send({
-        message: err.message || "some error occured",
-      });
-    } else res.send(data);
-  });
+  //   if(data.message=="Duplicate Entry"){
+  //     console.log("Hello")
+  //     res.status(400).send({message:"this number already exist"})
+  //   }else res.send(data);
+  // });
 };
 
 exports.findAll = (req, res) => {
