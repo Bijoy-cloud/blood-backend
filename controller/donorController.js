@@ -67,7 +67,7 @@ exports.findDonor = (req, res) => {
     // console.log(req.query)
   
   const bloodGroup = req.query.bloodgroup;
-  const city = req.query.city;
+  const location = req.query.city;
   console.log(bloodGroup)
   let query = "SELECT * FROM donor";
   // Add bloodgroup to query if it is present
@@ -75,11 +75,11 @@ exports.findDonor = (req, res) => {
     query += ` WHERE bloodgroup = '${bloodGroup}'`;
   }
 
-  if (city) {
+  if (location) {
     if (bloodGroup) {
-      query += `AND CITY='${city}'`;
+      query += `AND location='${location}'`;
     } else {
-      query += `WHERE CITY= '${city}'`;
+      query += `WHERE location= '${location}'`;
     }
   }
   query+=';'
