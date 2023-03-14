@@ -7,7 +7,7 @@ exports.create = (req, res) => {
     });
   }
   // console.log("req",req.body)
-  const donor = {
+  const donora = {
     name: req.body.name,
     lastname: req.body.lastname,
     bloodGroup: req.body.bloodGroup,
@@ -15,7 +15,8 @@ exports.create = (req, res) => {
     location: req.body.city,
     previousDonation: req.body.previousBloodDonation,
   };
-  sql.query("insert into donor set ?",donor,(err,data)=>{
+  // console.log(donora)
+  sql.query('insert into donor set ? ',donora,(err,data)=>{
     if(err){
           if (err.code === 'ER_DUP_ENTRY' || err.code === 'ER_DUP_KEY') {
               
