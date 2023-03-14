@@ -12,7 +12,7 @@ exports.create = (req, res) => {
     lastname: req.body.lastname,
     bloodGroup: req.body.bloodGroup,
     phoneNumber: req.body.phoneNumber,
-    city: req.body.city,
+    location: req.body.city,
     previousDonation: req.body.previousBloodDonation,
   };
   sql.query("insert into donor set ?",donor,(err,data)=>{

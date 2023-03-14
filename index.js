@@ -7,7 +7,7 @@ const dotenv = require('dotenv').config()
 const connection = require('./db')
 const verifyToken = require("./utilis/verifyToken")
 const route = require('./router/routes')
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3002;
 const host = "0.0.0.0"
 require('dotenv').config({ path: './config/.env' })
 
